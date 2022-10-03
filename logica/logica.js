@@ -37,6 +37,28 @@ module.exports = class Logica {
 
 
 
+    // .................................................................
+    // id:Texto
+    // -->
+    // buscarMedidaPorID() <--
+    // <--
+    // {id:Texto, medida:Float: fecha:String, nombreSensor:String, latitud:Float, longitud:Float}
+    // .................................................................
+    buscarMedidaPorID(id) {
+        var textoSQL = "SELECT * FROM Medidas where id=$id";
+        var valoresParaSQL = { $id: id }
+        return new Promise((resolver, rechazar) => {
+            this.laConexion.all(textoSQL, valoresParaSQL, //laConexion.all -> Devuelve todas las filas
+                (err, res) => {
+                    (err ? rechazar(err) : resolver(res))
+                })
+        })
+    } // ()
+
+    
+
+
+
 
     // .................................................................
     // nombreTabla:Texto

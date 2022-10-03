@@ -40,6 +40,30 @@ function cargarReglasUniversales(servidorExpress, laLogica) {
   }); // get /medida
 
 
+
+  // .......................................................
+  // GET /medida/<id>
+  // .......................................................
+  servidorExpress.get("/buscarMedidaID/:id", async function (peticion, respuesta) {
+    console.log(" * GET /buscarMedidaID ");
+
+    // averiguo la id
+    var id = peticion.params.id;
+
+    // llamo a la función adecuada de la lógica
+    var res = await laLogica.buscarMedidaPorID(id);
+
+    // si el array de resultados no tiene una casilla ...
+    if (res.length != 1) {
+      // 404: not found
+      respuesta.status(404).send("no encontré medida con esa id: " + id);
+      return;
+    }
+    // todo ok
+    respuesta.send(JSON.stringify(res[0]));
+  }); // get /persona
+
+
 } //()
 
 // --------------------------------------------------------------------------------
