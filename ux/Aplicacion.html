@@ -6,9 +6,34 @@
 <!-- ---------------------------------------------------- -->
 <!-- ---------------------------------------------------- -->
 <head>
-<meta charset="utf-8"/>         
+<meta charset="utf-8"/>   
+
+<!-- ---------------------------------------------------- -->
+<script src="logicaFake/buscarMedidas.js"></script>
+<!-- ---------------------------------------------------- -->
 
 
+
+<script>
+  function mostrarMedidas() {
+  console.log("Inicio Aplicación/mostrarMedidas()");
+
+  // llamo a la función de la lógica (versión fake)
+  mostrarInfo(function( err, res ) {
+    
+    // cuando tenga el resultado lo muestro
+   if ( err ) {
+     alert( " hubo un error de transmisión http: " + err )
+     return
+   } else if ( res.error ) {
+     alert( " hubo un error en la llamada: " + JSON.stringify( res.error ) )
+     return
+   }
+    document.getElementById("infoMedidas").innerHTML  =  "   resultado=  "  + JSON.stringify( res );
+  })
+  
+  }
+  </script>
 
 
 
@@ -33,10 +58,11 @@
 <button type="buton">Buscar Medida</button>
 
 <p>
-  <button type="buton"> Mostrar todas las medidas </button>
+  <button type="buton" onclick="mostrarMedidas()"> Mostrar todas las medidas </button>
 </p>
 
 <p id="salida">Estado</p>
+<p id="infoMedidas">Antes</p>
 
 
 </body>

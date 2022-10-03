@@ -22,6 +22,21 @@ module.exports = class Logica {
     } // ()
 
 
+    // .................................................................
+    // mostrarMedidas() -->
+    // .................................................................
+    mostrarMedidas() {
+        var textoSQL = "SELECT * FROM Medidas";
+        return new Promise((resolver, rechazar) => {
+            this.laConexion.all(textoSQL, //laConexion.all -> Devuelve todas las filas
+                (err, res) => {
+                    (err ? rechazar(err) : resolver(res))
+                })
+        })
+    } // ()
+
+
+
 
     // .................................................................
     // nombreTabla:Texto

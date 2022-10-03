@@ -27,7 +27,20 @@ function cargarReglasUniversales(servidorExpress, laLogica) {
   // Reglas del API REST
   // .......................................................
 
+  // .......................................................
+  // GET /medida/
+  // .......................................................
+  servidorExpress.get("/mostrarMedidas/", async function (peticion, respuesta) {
+    console.log(" * GET /mostrarMedidas");
 
+    // llamo a la función adecuada de la lógica
+    var res = await laLogica.mostrarMedidas();
+    // todo ok
+    respuesta.send(JSON.stringify(res));
+  }); // get /medida
+
+
+} //()
 
 // --------------------------------------------------------------------------------
 // main()
@@ -87,7 +100,7 @@ function main() {
     servicio.close();
   });
 } // ()
-}
+
 // --------------------------------------------------------------------------------
 // main()
 // --------------------------------------------------------------------------------
