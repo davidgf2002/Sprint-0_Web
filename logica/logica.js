@@ -57,6 +57,30 @@ module.exports = class Logica {
 
     
 
+    // .................................................................
+    // datos:{dni:Texto, nombre:Texto: apellidos:Texto}
+    // -->.
+    // insertarPersona() -->
+    // .................................................................
+    insertarMedida(datos) {
+        var textoSQL = "INSERT INTO Medidas VALUES( $id, $medida, $fecha, $nombreSensor, $longitud, $latitud);"
+
+        var valoresParaSQL = {
+            $id: datos.id, 
+            $medida: datos.medida,
+            $fecha: datos.fecha,
+            $nombreSensor: datos.nombreSensor,
+            $longitud: datos.longitud,
+            $latitud: datos.latitud
+        }
+
+        return new Promise((resolver, rechazar) => {
+            this.laConexion.run(textoSQL, valoresParaSQL, function (err) {
+                (err ? rechazar(err) : resolver())
+            })
+        })
+    } // ()
+
 
 
 

@@ -42,7 +42,7 @@ function cargarReglasUniversales(servidorExpress, laLogica) {
 
 
   // .......................................................
-  // GET /medida/<id>
+  // GET /buscarMedidaID/<id>
   // .......................................................
   servidorExpress.get("/buscarMedidaID/:id", async function (peticion, respuesta) {
     console.log(" * GET /buscarMedidaID ");
@@ -61,7 +61,21 @@ function cargarReglasUniversales(servidorExpress, laLogica) {
     }
     // todo ok
     respuesta.send(JSON.stringify(res[0]));
-  }); // get /persona
+  }); // get /medida
+
+
+
+  // .......................................................
+  // POST /insertarMedida
+  // .......................................................
+  servidorExpress.post("/insertarMedida", async function (peticion, respuesta) {
+    console.log(" * POST /insertarMedida ");
+    var datos = JSON.parse(peticion.body);
+    // supuesto procesamiento
+	  await laLogica.insertarMedida(datos);
+
+	  respuesta.send("OK");
+  }); //
 
 
 } //()
