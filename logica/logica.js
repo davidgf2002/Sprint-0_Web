@@ -83,7 +83,44 @@ module.exports = class Logica {
 
 
 
+    // .................................................................
+    // id:Texto
+    // -->
+    // buscarMedidaPorNombre() <--
+    // <--
+    // {id:Texto, medida:Float: fecha:String}
+    // .................................................................
+    buscarMedidaPorNombre(nombreSensor) {
+        var textoSQL = "SELECT * FROM Medidas where nombreSensor=$nombreSensor";
+        var valoresParaSQL = { $nombreSensor: nombreSensor }
+        return new Promise((resolver, rechazar) => {
+            this.laConexion.all(textoSQL, valoresParaSQL, //laConexion.all -> Devuelve todas las filas
+                (err, res) => {
+                    (err ? rechazar(err) : resolver(res))
+                })
+        })
+    } // ()
 
+
+    // .................................................................
+    // id:Texto
+    // --> 
+    // buscarMedidaPorID() <--
+    // <--
+    // {id:Texto, medida:Float: fecha:String}
+    // .................................................................
+    borrarMedidaPorNombre(nombreSensor) {
+        var textoSQL = "DELETE FROM Medidas where nombreSensor=$nombreSensor";
+        var valoresParaSQL = { $nombreSensor: nombreSensor }
+        return new Promise((resolver, rechazar) => {
+            this.laConexion.all(textoSQL, valoresParaSQL, //laConexion.all -> Devuelve todas las filas
+                (err, res) => {
+                    (err ? rechazar(err) : resolver(res))
+                })
+        })
+    } // ()
+
+    
     // .................................................................
     // nombreTabla:Texto
     // -->

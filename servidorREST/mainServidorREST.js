@@ -78,6 +78,29 @@ function cargarReglasUniversales(servidorExpress, laLogica) {
   }); //
 
 
+  // .......................................................
+  // GET /medida/<nombre>
+  // .......................................................
+  servidorExpress.get("/buscarMedidaID/:nombreSensor", async function (peticion, respuesta) {
+    console.log(" * GET /buscarMedidaNombre ");
+
+    // averiguo el nombre
+    var nombreSensor = peticion.params.nombreSensor;
+
+    // llamo a la función adecuada de la lógica
+    var res = await laLogica.buscarMedidaPorNombre(nombreSensor);
+
+    // si el array de resultados no tiene una casilla ...
+    if (res.length != 1) {
+      // 404: not found
+      respuesta.status(404).send("no encontré medida con ese nombre: " + nombreSensor);
+      return;
+    }
+    // todo ok
+    respuesta.send(JSON.stringify(res[0]));
+  }); // get /medida:nombre
+
+
 } //()
 
 // --------------------------------------------------------------------------------

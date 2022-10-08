@@ -21,39 +21,55 @@ describe("Test 1: Insertar Medida", function () {
     });
   }); // it
 
-  // ....................................................
-  // ....................................................
-  it("Buscar medida por ID", async function () {
-        var res = await laLogica.buscarMedidaPorID("5");
-        assert.equal(res.length, 1, "No existe medida con esa ID");
-  }); // it
 
+  // ....................................................
+  // ....................................................
   it("Insertar Medida", async function () {
     await laLogica.insertarMedida(
         {
             id: null,
-            medida: "medidaTest",
-            fecha: "fechaTest",
-            nombreSensor: "nombreTest",
-            latitud: "latitudTest",
-            longitud: "longitudTest"
+            medida: "medidaTestLogica",
+            fecha: "fechaTestLogica",
+            nombreSensor: "nombreTestLogica",
+            latitud: "latitudTestLogica",
+            longitud: "longitudTestLogica"
         })
 
-    var res = await laLogica.buscarMedidaPorID("12");
+    var res = await laLogica.buscarMedidaPorNombre("nombreTestLogica");
     assert.equal(res.length, 1, "¿no hay un resulado?");
-    assert.equal(res[0].id, "12", "¿La ID no es 12?");
-    assert.equal(res[0].medida, "medidaTest", "¿no es medidaTest?");
-    assert.equal(res[0].latitud, "latitudTest", "¿no es latitudTest?");
-    assert.equal(res[0].longitud, "longitudTest", "¿no es longitudTest?");
+    assert.equal(res[0].medida, "medidaTestLogica", "¿no es medidaTestLogica?");
+    assert.equal(res[0].fecha, "fechaTestLogica", "¿no es medidaTestLogica?");
+    assert.equal(res[0].latitud, "latitudTestLogica", "¿no es latitudTestLogica?");
+    assert.equal(res[0].longitud, "longitudTestLogica", "¿no es longitudTestLogica?");
+  }); // it
+
+
+  
+  // ....................................................
+  // ....................................................
+  it("Buscar medida por nombre", async function () {
+        var res = await laLogica.buscarMedidaPorNombre("nombreTestLogica");
+        assert.equal(res.length, 1, "No existe medida con ese nombre");
   }); // it
 
 
 
+  // ....................................................
+  // ....................................................
+  it("Borrar medida Test", async function () {
+
+    await laLogica.borrarMedidaPorNombre("nombreTestLogica");
+    var res = await laLogica.buscarMedidaPorNombre("nombreTestLogica");
+    assert.equal(res.length, 0, "Se ha borrado la medida test")
+  }); // it
+
+
+  // ....................................................
+  // ....................................................
   it("cerrar conexión a la base de datos", async function () {
     try {
       await laLogica.cerrar();
     } catch (err) {
-      // assert.equal( 0, 1, "cerrar conexión a BD fallada: " + err)
       throw new Error("cerrar conexión a BD fallada: " + err);
     }
   }); // it

@@ -1,9 +1,9 @@
 // ........................................................
-// mainTestServ.js
+// mainTest1.js
 // ........................................................
 var request = require("request");
 var assert = require("assert");
-const Logica = require("../../logica/logica");
+const Logica = require("../../logica/Logica.js");
 // ........................................................
 // ........................................................
 const IP_PUERTO = "http://localhost:8080";
@@ -13,18 +13,50 @@ const IP_PUERTO = "http://localhost:8080";
 describe("Test 1 : Recuerda arrancar el servidor", function () {
   // ....................................................
   // ....................................................
-  it("probar que GET /prueba responde ¡Funciona!", function (hecho) {
+
+
+  // ....................................................
+  // ....................................................
+  it("probar POST /insertarMedida", function (hecho) {
+    var datosMedida = {
+      id: 0,
+      medida: "MedidaTestServ",
+      fecha: "FechaTestServ",
+      nombreSensor: "nombreTestServ",
+      longitud: "LongitudTestServ",
+      latitud: "LatitudTestServ"
+    };
+    //var JSONpost = JSON.stringify(datosMedida)
+    request.post(
+  {
+    url: IP_PUERTO + "/insertarMedida",
+    headers: { "User-Agent": "jordi", "Content-Type": "application/json" },
+    body: JSON.stringify(datosMedida),
+  },
+  function (err, respuesta, carga) {
+    assert.equal(err, null, "¿ha habido un error?" + err);
+    assert.equal(respuesta.statusCode, 200, "¿El código no es 200 (OK)");
+    hecho();
+  } // callback
+); // .post
+}); // it
+
+
+
+  // ....................................................
+  // ....................................................
+  it("probar que GET /buscarMedida responde", function (hecho) {
     request.get(
-      { url: IP_PUERTO + "/buscarMedidaID/13", headers: { "User-Agent": "David" } },
+      { url: IP_PUERTO + "/buscarMedidaID/0", headers: { "User-Agent": "jordi" } },
       function (err, respuesta, carga) {
 
         var datosMedida = {
-          id: 13,
+          id: 0,
           medida: "MedidaTestServ",
-          fecha: "FechaTest",
-          nombreSensor: "nombreTest",
-          longitud: "LongitudTest",
-          latitud: "LatitudTest"
+          fecha: "FechaTestServ",
+          nombreSensor: "nombreTestServ",
+          longitud: "LongitudTestServ",
+          latitud: "LatitudTestServ"
         };
         var JSONpost = JSON.stringify(datosMedida)
         
@@ -35,34 +67,27 @@ describe("Test 1 : Recuerda arrancar el servidor", function () {
       } // callback()
     ); // .get
   }); // it
+
+/*
   // ....................................................
   // ....................................................
+it("Borrar medida prueba Servidor", function (hecho) {
+  request.get(
+    { url: IP_PUERTO + "/borrarMedidaNombreAsync/nombreTestServ", headers: { "User-Agent": "David" } },
+    async function (err, respuesta, carga) {
+
+      var res = await laLogica.borrarMedidaNombreAsync("nombreTestServ")
+      
+      assert.equal(respuesta.statusCode, 200, "¿El código no es 200 (OK)");
+      assert.equal(carga.length, res.length, "¿No se ha borrado?");
+      hecho();
+    } // callback()
+  ); // .get
+}); // it
+*/
 
   // ....................................................
   // ....................................................
-  it("probar POST /insertarMedida", function (hecho) {
-        var datosMedida = {
-          id: 17,
-          medida: "MedidaTestServ",
-          fecha: "FechaTest",
-          nombreSensor: "nombreTest",
-          longitud: "LongitudTest",
-          latitud: "LatitudTest"
-        };
-        //var JSONpost = JSON.stringify(datosMedida)
-        request.post(
-      {
-        url: IP_PUERTO + "/insertarMedida",
-        headers: { "User-Agent": "David", "Content-Type": "application/json" },
-        body: JSON.stringify(datosMedida),
-      },
-      function (err, respuesta, carga) {
-        assert.equal(err, null, "¿ha habido un error?" + err);
-        assert.equal(respuesta.statusCode, 200, "¿El código no es 200 (OK)");
-        hecho();
-      } // callback
-    ); // .post
-  }); // it
 
   
 }); // describe
