@@ -1,6 +1,7 @@
 
 // ........................................................
 // mainTestLogica.js
+// En este archivo se ejecutan los tests de la lógica, insertar Medida, BuscarMedida y Borrar medida
 // ........................................................
 const Logica = require("../Logica.js");
 var assert = require("assert");
@@ -55,6 +56,7 @@ describe("Test 1: Insertar Medida", function () {
 
 
   // ....................................................
+  // Test para borrar la medida insertada en el test anterior
   // ....................................................
   it("Borrar medida Test", async function () {
 

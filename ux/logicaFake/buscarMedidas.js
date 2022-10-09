@@ -1,11 +1,15 @@
 // ---------------------------------------------------
-// fake
+// BuscarMedidas.js
+// En este archivo se encuentra la función de la lógica fake que
+// devolverá todas las funciones existentes en la base de datos
+// ---------------------------------------------------
+
 
 //const { stringify } = require("querystring")
 
 // ---------------------------------------------------
 function mostrarInfo( cb ) {
-	mostrarTodasMedidas( "http://localhost:8080/mostrarMedidas/", cb )
+	llamarMostrarTodasMedidas( "http://localhost:8080/mostrarMedidas/", cb )
 
 } // ()
 
@@ -14,7 +18,8 @@ function mostrarInfo( cb ) {
 // llama a una función remota enviando POST <nombreFuncion>
 //
 // ---------------------------------------------------
-function mostrarTodasMedidas( nombreFuncion, cb ) {
+function llamarMostrarTodasMedidas( nombreFuncion, cb ) {
+	console.log("Inicio mostrarTodasMedidas() -> LogicaFake");
 
 	// preparar la llamada remota
 	var xmlhttp = new XMLHttpRequest()

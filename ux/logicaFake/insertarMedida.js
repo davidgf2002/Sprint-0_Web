@@ -1,5 +1,9 @@
 // ---------------------------------------------------
-// fake
+// insertarMedida.js
+// En este archivo se encuentra la función de la lógica Fake
+// que insertará una medida en la base de datos con los valores
+// recibidos
+// --------------------------------------------------
 
 //const { stringify } = require("querystring")
 
@@ -16,6 +20,7 @@ function insertarMedida( datos, cb ) {
 //
 // ---------------------------------------------------
 function llamarInsertarMedida( nombreFuncion, parametrosLlamada, cb ) {
+	console.log("Inicio llamarInsertarMedida() -> LogicaFake");
 
 	// preparar la llamada remota
 	var xmlhttp = new XMLHttpRequest()

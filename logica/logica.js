@@ -1,5 +1,6 @@
 // .....................................................................
 // Logica.js
+// En este archivo se encuentran todas las funciones que ejecuta la lógica 
 // .....................................................................
 const sqlite3 = require("sqlite3")
 // .....................................................................
@@ -58,9 +59,9 @@ module.exports = class Logica {
     
 
     // .................................................................
-    // datos:{dni:Texto, nombre:Texto: apellidos:Texto}
+    // datos:{id:Texto, medida:Float: fecha:String, nombreSensor:String, latitud:Float, longitud:Float}
     // -->.
-    // insertarPersona() -->
+    // insertarMedida() -->
     // .................................................................
     insertarMedida(datos) {
         var textoSQL = "INSERT INTO Medidas VALUES( $id, $medida, $fecha, $nombreSensor, $longitud, $latitud);"
@@ -88,7 +89,7 @@ module.exports = class Logica {
     // -->
     // buscarMedidaPorNombre() <--
     // <--
-    // {id:Texto, medida:Float: fecha:String}
+    // {id:Texto, medida:Float: fecha:String, nombreSensor:String, latitud:Float, longitud:Float}
     // .................................................................
     buscarMedidaPorNombre(nombreSensor) {
         var textoSQL = "SELECT * FROM Medidas where nombreSensor=$nombreSensor";
@@ -103,11 +104,11 @@ module.exports = class Logica {
 
 
     // .................................................................
-    // id:Texto
+    // nombreSensor:Texto
     // --> 
-    // buscarMedidaPorID() <--
+    // buscarMedidaPorNombre() <--
     // <--
-    // {id:Texto, medida:Float: fecha:String}
+    // {id:Texto, medida:Float: fecha:String, nombreSensor:String, latitud:Float, longitud:Float}
     // .................................................................
     borrarMedidaPorNombre(nombreSensor) {
         var textoSQL = "DELETE FROM Medidas where nombreSensor=$nombreSensor";

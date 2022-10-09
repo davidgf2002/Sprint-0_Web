@@ -1,5 +1,6 @@
 // --------------------------------------------------------------------------------
 // mainServidorREST.js
+// En este archivo se arranca el servidot y se hacen las peticiones POST y GET al servidor
 // --------------------------------------------------------------------------------
 
 const express = require("express");
@@ -81,7 +82,7 @@ function cargarReglasUniversales(servidorExpress, laLogica) {
   // .......................................................
   // GET /medida/<nombre>
   // .......................................................
-  servidorExpress.get("/buscarMedidaID/:nombreSensor", async function (peticion, respuesta) {
+  servidorExpress.get("/buscarMedidaNombre/:nombreSensor", async function (peticion, respuesta) {
     console.log(" * GET /buscarMedidaNombre ");
 
     // averiguo el nombre

@@ -1,9 +1,11 @@
 // ---------------------------------------------------
-// fake
+// buscarMedidaConID.js
+// En este archivo se encuentra la función de la lógica Fake
+// que devolverá la medida que contenga la id recibida
+// ---------------------------------------------------
 
 //const { stringify } = require("querystring")
 
-// ---------------------------------------------------
 function buscarMedidaConID( datos, cb ) {
 	llamarBuscarMedida( "http://localhost:8080/buscarMedidaID/" + datos, cb )
 
@@ -15,6 +17,7 @@ function buscarMedidaConID( datos, cb ) {
 //
 // ---------------------------------------------------
 function llamarBuscarMedida( nombreFuncion, cb ) {
+	console.log("Inicio llamarBuscarMedida() -> LogicaFake");
 
 	// preparar la llamada remota
 	var xmlhttp = new XMLHttpRequest()
