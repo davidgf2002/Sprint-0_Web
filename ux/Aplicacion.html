@@ -36,7 +36,10 @@
      alert( " hubo un error en la llamada: " + JSON.stringify( res.error ) )
      return
    }
-    document.getElementById("infoMedidas").innerHTML  =  "   resultado=  "  + JSON.stringify( res );
+    //document.getElementById("infoMedidas").innerHTML  =  "   resultado=  "  + JSON.stringify( res );
+
+    console.log("Se llama a mostrar Tabla");
+    mostrarTabla(res);
   })
   
   }
@@ -115,11 +118,46 @@ console.log("Inicio de la función insertarMedidaPulsado()");
   </script>
 
 
+<script>
+
+  function mostrarTabla(datosTabla){
+    console.log("comienza mostrarTabla()");
+
+//Tabla con los contenidos
+var tablaMedidas = document.getElementById('tabla');
+
+//Aqui vamos a guardar los tr y td con su informacion.
+let tablaContent = ``
+
+
+for (const item of datosTabla) {
+  //Fijate que utilizamos += para acumular los datos. 
+  //Template strings syntax
+   tablaContent += `
+    <tr>
+      <td>${item.id}</td>
+      <td>${item.medida}</td>
+      <td>${item.fecha}</td>
+      <td>${item.nombreSensor}</td>
+      <td>${item.longitud}</td>
+      <td>${item.latitud}</td>
+    </td>
+  
+  `
+}
+//Finalmente añadimos el contenido a la tabla
+tablaMedidas.innerHTML += tablaContent
+}
+
+</script>
+
+
+
 </head>
 
 <!-- ---------------------------------------------------- -->
 <!-- ---------------------------------------------------- -->
-<body>
+<body onload="mostrarMedidas()">
 
 <h1>Medidas Sensor</h1>
 
@@ -139,12 +177,23 @@ console.log("Inicio de la función insertarMedidaPulsado()");
   <button type="buton" onclick="mostrarMedidas()"> Mostrar todas las medidas </button>
 </p>
 
-<p>
-  <button type="buton" onclick="insertarMedidaPulsado()"> Insertar Medida </button>
-</p>
-
 <p id="salida">Estado</p>
-<p id="infoMedidas">Antes</p>
+
+
+<table id="tabla">
+
+  <tr>
+
+    <th> ID </th>
+    <th> MEDIDA </th>
+    <th> FECHA </th>
+    <th> NOMBRE </th>
+    <th> LONGITUD </th>
+    <th> LATITUD </th>
+
+  </tr>
+  
+</table>
 
 
 </body>
