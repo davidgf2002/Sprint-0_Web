@@ -9,7 +9,7 @@ Para cerrar el servidor, basta con pulsar el comando de teclado Ctrl + C y escri
 
 ![image](https://user-images.githubusercontent.com/76249264/194780223-0e0633ba-9ba9-4c73-a6b5-0747b5a4ae28.png)
 
-Una vez entremos al servidor mediante esta URL: http://localhost:8080/Aplicacion.html
+Una vez entremos al servidor mediante esta URL: "http://localhost:8080/Aplicacion.html"
 Nos aparecerá una página html en la que encontraremos un InputText para seleccionar una ID, al pulsar el botón Buscar Medida, se nos mostará la medida con dicha ID
 
 ![image](https://user-images.githubusercontent.com/76249264/194780331-35f107e4-b423-4c33-a876-e1b09c957d39.png)
