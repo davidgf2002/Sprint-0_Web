@@ -126,6 +126,14 @@ console.log("Inicio de la función insertarMedidaPulsado()");
 //Tabla con los contenidos
 var tablaMedidas = document.getElementById('tabla');
 
+  //Se vacía la tabla para que no se superpongan los datos
+  var tablafilas = tablaMedidas.getElementsByTagName('tr');
+
+
+for (let i = tablafilas.length - 1; i > 0; i--) {
+  tablafilas[i].remove();
+}
+
 //Aqui vamos a guardar los tr y td con su informacion.
 let tablaContent = ``
 
